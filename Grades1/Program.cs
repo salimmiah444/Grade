@@ -38,7 +38,8 @@ namespace Grades1
             //Console.WriteLine(areEqual);
 
             //ThrowAwayGradeBook book = new ThrowAwayGradeBook("Scott's Book");
-            GradeTracker book = CreateGradeBook();
+            //GradeTracker book = CreateGradeBook();
+            IGradeTracker book = CreateGradeBook();
 
             try
             {
@@ -94,7 +95,13 @@ namespace Grades1
             //book.AddGrade(91f);
             //book.AddGrade(89.5f);
             //book.AddGrade(75f);
-            book.WriteGuides(Console.Out);
+
+            //book.DoSomething();
+            //book.WriteGuides(Console.Out);
+            foreach (float grade in book)
+            {
+                Console.WriteLine(grade);
+            }
             try
             {
                 //    Console.WriteLine("Please enter a name for the book");
@@ -128,9 +135,9 @@ namespace Grades1
 
         }
 
-        private static GradeTracker CreateGradeBook()
+        private static IGradeTracker CreateGradeBook()
         {
-            GradeTracker book = new ThrowAwayGradeBook("Scott's Book");
+            IGradeTracker book = new ThrowAwayGradeBook("Scott's Book");
             return book;
         }
 

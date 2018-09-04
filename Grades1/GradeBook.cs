@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
 namespace Grades1
 {
-    public class GradeBook : GradeTracker  
+    //public abstract class GradeBook : GradeTracker  
+    public class GradeBook : GradeTracker
     {
 
         public GradeBook(string name = "There is no name")
@@ -14,6 +16,16 @@ namespace Grades1
             Name = name;
             _grades = new List<float>();
 
+        }
+
+        public override IEnumerator GetEnumerator()
+        {
+            return _grades.GetEnumerator();
+        }
+
+        public override void DoSomething()
+        {
+            
         }
         public override void AddGrade(float grade)
         {

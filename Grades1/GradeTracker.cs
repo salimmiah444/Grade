@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,11 +8,26 @@ using System.Threading.Tasks;
 
 namespace Grades1
 {
-    public abstract class GradeTracker
+    public interface IGradeTracker : IEnumerable
+    {
+        void AddGrade(float grade);
+        GradeStatistics ComuteStatistics();
+        void WriteGuides(TextWriter textWriter);
+        string Name { get; set; }
+        event NamedChangedDeligate NameChanged;
+        void DoSomething();
+
+    }
+
+    public abstract class GradeTracker : IGradeTracker
     {
         public abstract void AddGrade(float grade);
         public abstract GradeStatistics ComuteStatistics();
         public abstract void WriteGuides(TextWriter textWriter);
+        public abstract IEnumerator GetEnumerator();
+
+        public abstract void DoSomething();
+
 
         public string Name
         {
